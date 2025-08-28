@@ -20,7 +20,7 @@ jobs:
         run: docker build -t colonialbiker123/myapp:latest .
 
       - name: Quick Container Test
-        run: docker run -rm colonialbiker123/myapp:latest echo "Cocnatiner Works!"
+        run: docker run --rm colonialbiker123/myapp:latest echo "Cocnatiner Works!"
 
       - name: Puch Docker image
         run: docker push colonialbiker123/myapp:latest
