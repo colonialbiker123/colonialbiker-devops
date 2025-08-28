@@ -14,6 +14,11 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run Hadolint
-        uses: hadolint/hadolint-action@v3.1.0
+        run: |
+          docker run --rm -i hadolint/hadolint < dockerfile -f json > hadolint-report.json
+
+      - name: Upload Hadolint report
+        uses: actions/upload-artifact@v4
         with:
-          dockerfile: Dockerfile
+          name: hadolint-report
+          path: hadolint-report.json
