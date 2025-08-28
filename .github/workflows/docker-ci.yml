@@ -1,0 +1,26 @@
+name: Docker CI/CD
+
+on:
+  push:
+    branches: [ "main" ] 
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Login to Docker Hub
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+
+      - name: Build Docker Image
+        run: docker build -t colonialbiker123/myapp:latest .
+
+      - name: Quick Container Test
+        run: docker run -rm colonialbiker123/myapp:latest echo "Cocnatiner Works!"
+
+      - name: Puch Docker image
+        run: docker push colonialbiker123/myapp:latest
