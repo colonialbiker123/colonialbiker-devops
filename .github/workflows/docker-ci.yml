@@ -37,6 +37,8 @@ jobs:
           scan-type: 'fs'
           format: 'table'
           exit-code: '0'
+          ignore-unfixed: true
+          scan-ref: '.'
           severity: 'CRITICAL,HIGH'
 
       - name: Generate SBOM (CycloneDX JSON)
