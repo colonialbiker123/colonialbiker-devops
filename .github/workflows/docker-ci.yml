@@ -14,10 +14,6 @@ permissions:
 
 jobs:
   docker:
-    permissions:
-      contents:
-      pull-requests:
-
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
