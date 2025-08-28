@@ -31,6 +31,14 @@ jobs:
           vuln-type: 'os,library'
           severity: 'CRITICAL,HIGH,MEDIUM'
 
+      - name: Trivy Secret Scan
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'fs'
+          format: 'table'
+          exit-code: '0'
+          severity: 'CRITICAL,HIGH'
+
       - name: Generate SBOM (CycloneDX JSON)
         run: |
           docker run --rm -v ${{ github.workspace }}:/output aquasec/trivy:latest image --format cyclonedx --output /output/sbom.json colonialbiker123/myapp:latest
