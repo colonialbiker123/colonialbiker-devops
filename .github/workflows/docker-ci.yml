@@ -1,4 +1,4 @@
-name: Docker CI/CD
+name: Docker CI/CD with Trivy Scan
 
 on:
   push:
@@ -21,6 +21,15 @@ jobs:
 
       - name: Quick Container Test
         run: docker run --rm colonialbiker123/myapp:latest echo "Cocnatiner Works!"
+
+      - name: Trivy Scan
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: 'colonialbiker123/myapp'
+          format: 'table'
+          exit-code: '0'
+          vuln-type: 'os, library'
+          severity: 'CRITICAL,HIGH,MEDIUM'
 
       - name: Puch Docker image
         run: docker push colonialbiker123/myapp:latest
