@@ -46,7 +46,7 @@ jobs:
           docker run --rm -v ${{ github.workspace }}:/output aquasec/trivy:latest image --format cyclonedx --output /output/sbom.json colonialbiker123/myapp:latest
 
       - name: Upload SBOM Artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: sbom-report
           path: sbom.json
