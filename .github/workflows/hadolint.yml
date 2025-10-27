@@ -18,7 +18,7 @@ jobs:
           docker run --rm -i hadolint/hadolint -f json < Dockerfile > hadolint-report.json
 
       - name: Upload Hadolint report
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: hadolint-report
           path: hadolint-report.json
